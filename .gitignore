@@ -1,2 +1,5 @@
-/vendor/
-/data/
+vendor/
+data/
+node_modules/
+.vscode/
+.quasar/
