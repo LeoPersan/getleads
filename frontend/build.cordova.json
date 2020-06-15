@@ -1,0 +1,18 @@
+{
+    "android": {
+        "debug": {
+            "keystore": "../../sign/quasar-debug-key.jks",
+            "storePassword": "Chronos666!",
+            "alias": "quasar-debug",
+            "password" : "Chronos666!",
+            "keystoreType": "jks"
+        },
+        "release": {
+            "keystore": "../../sign/quasar-release-key.jks",
+            "storePassword": "Chronos666!",
+            "alias": "quasar-release",
+            "password" : "Chronos666!",
+            "keystoreType": "jks"
+        }
+    }
+}
