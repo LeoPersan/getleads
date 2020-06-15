@@ -24,12 +24,17 @@ class Portfolio extends Model
     public function calcLeadsMatch()
     {
         foreach (Lead::all() as $lead) {
-            $this->matches()->create([
+            $this->leads()->create([
                 'lead_id' => $lead->id,
                 'match' => $lead->calcMatch($this),
             ]);
         }
         return true;
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function clients()
@@ -47,7 +52,7 @@ class Portfolio extends Model
         return $this->hasOne(Mean::class);
     }
 
-    public function matches()
+    public function leads()
     {
         return $this->hasMany(LeadsMatch::class);
     }
