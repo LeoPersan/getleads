@@ -103,8 +103,8 @@ export default {
   },
 };
 </script>
-<style lang="scss">
-.q-field__control {
+<style lang="scss" >
+.number .q-field__control {
   margin: 0 10px;
   width: 50px;
   height: 20px;

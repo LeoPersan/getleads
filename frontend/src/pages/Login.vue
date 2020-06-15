@@ -67,7 +67,7 @@ export default {
         password, email,
       }).then((result) => {
         this.$axios.defaults.headers.common.Authorization = `Bearer ${result.data.access_token}`;
-        this.$router.push('/');
+        this.$router.push('/index');
       }).catch(() => {
         this.$q.notify({
           type: 'negative',
