@@ -63,12 +63,8 @@ export default {
         password, email,
       } = this;
       if (this.rulesEmail(email) !== true) return;
-      this.$axios({
-        method: 'post',
-        url: '/login',
-        data: {
-          password, email,
-        },
+      this.$axios.post('/login', {
+        password, email,
       }).then((data) => {
         this.$axios.defaults.headers.common.Authorization = `Bearer ${data.token}`;
         this.$router.push('/');
@@ -85,12 +81,8 @@ export default {
         password, email,
       } = this;
       if (this.rulesEmail(email) !== true) return;
-      this.$axios({
-        method: 'post',
-        url: '/users',
-        data: {
-          password, email, password_confirmation: password,
-        },
+      this.$axios.post('/users', {
+        password, email, password_confirmation: password,
       }).then(() => {
         this.login();
       }).catch(() => {
