@@ -62,7 +62,6 @@ export default {
   data() {
     return {
       name: null,
-      age: null,
       accept: false,
       file: null,
     };
@@ -71,11 +70,10 @@ export default {
   methods: {
     onSubmit() {
       const {
-        name, age, accept, file,
+        name, accept, file,
       } = this;
-      this.$axios.post('/api/portifolios', {
+      this.$axios.post('/portifolios', {
         name,
-        age,
         accept,
         file,
       }).then(() => {

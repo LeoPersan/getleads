@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="hHh Lpr fff">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -24,12 +24,6 @@
       content-class="bg-grey-1"
     >
       <q-list>
-        <q-item-label
-          header
-          class="text-grey-8 bg-primary shadow-4"
-        >
-          &nbsp;
-        </q-item-label>
         <EssentialLink
           v-for="link in essentialLinks"
           :key="link.title"
@@ -78,8 +72,3 @@ export default {
   },
 };
 </script>
-<style lang="scss">
-.q-list > .q-item__label:first-child {
-  height: 50px;
-}
-</style>

@@ -21,6 +21,12 @@ $router->post('/users', function (Request $request) {
     ]);
 });
 
+// $router->options('login', function () {
+//     return response([], 204, [
+
+//     ]);
+// });
+
 $router->post('login', function () {
     $credentials = request(['email', 'password']);
 
