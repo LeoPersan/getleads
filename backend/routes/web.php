@@ -1,5 +1,6 @@
 <?php
 
+use App\Exports\ExportData;
 use App\User;
 use App\Portfolio;
 use App\Jobs\MatchLeads;
@@ -71,10 +72,12 @@ $router->group(['middleware' => 'auth:api'], function ($router) {
 
     $router->get('/portfolios/{portfolio}', function (Request $request, $portfolio) {
         $portfolio = Portfolio::find($portfolio);
-        return $portfolio
-            ->leads()
-            ->uf($request->input('uf'))
-            ->minMatch($request->input('match'))
-            ->paginate();
+        $leads = $portfolio->leads()->uf($request->input('uf'))->minMatch($request->input('match'));
+        if ($request->has('download'))
+            return Excel::download(new ExportData($leads->get()), 'leads.csv');
+        return [
+            'portfolio' => $portfolio,
+            'leads' => $leads->paginate(),
+        ];
     });
 });

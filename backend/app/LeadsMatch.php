@@ -9,6 +9,11 @@ class LeadsMatch extends Model
 {
     protected $fillable = ['portfolio_id', 'lead_id', 'match'];
 
+    public function getMatchAttribute()
+    {
+        return $this->attributes['match'] * 100;
+    }
+
     public function scopeUf(Builder $builder, $uf = false)
     {
         if (is_null($uf)) return $builder;
