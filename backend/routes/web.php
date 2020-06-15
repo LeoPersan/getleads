@@ -21,12 +21,6 @@ $router->post('/users', function (Request $request) {
     ]);
 });
 
-// $router->options('login', function () {
-//     return response([], 204, [
-
-//     ]);
-// });
-
 $router->post('login', function () {
     $credentials = request(['email', 'password']);
 
@@ -51,13 +45,13 @@ $router->group(['middleware' => 'auth:api'], function ($router) {
         return response()->json(auth('api')->user());
     });
 
-    $router->post('/portifolios', function (Request $request) {
+    $router->post('/portfolios', function (Request $request) {
         $this->validate($request, [
             'name' => 'required',
             'file' => 'required|file'
         ]);
         $file = $request->file('file');
-        $file->store('portifolios/' . date('Y/m/d'));
+        $file->store('portfolios/' . date('Y/m/d'));
 
         DB::beginTransaction();
         $portfolio = auth('api')->user()->portfolios()->create(['name' => $request->input('name')]);
@@ -71,11 +65,11 @@ $router->group(['middleware' => 'auth:api'], function ($router) {
         return response(['result' => true]);
     });
 
-    $router->get('/portifolios', function () {
+    $router->get('/portfolios', function () {
         return auth('api')->user()->portfolios;
     });
 
-    $router->get('/portifolios/{portfolio}', function (Request $request, $portfolio) {
+    $router->get('/portfolios/{portfolio}', function (Request $request, $portfolio) {
         $portfolio = Portfolio::find($portfolio);
         return $portfolio
             ->leads()

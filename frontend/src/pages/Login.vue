@@ -51,8 +51,8 @@ export default {
   data() {
     return {
       password: '',
-      isPwd: true,
       email: '',
+      isPwd: true,
       rulesEmail: (val) => (!!val.match(/[^@]+@([^@.]+\.)+[^@.]+/)) || 'Digite um e-mail válido!',
     };
   },
@@ -65,8 +65,8 @@ export default {
       if (this.rulesEmail(email) !== true) return;
       this.$axios.post('/login', {
         password, email,
-      }).then((data) => {
-        this.$axios.defaults.headers.common.Authorization = `Bearer ${data.token}`;
+      }).then((result) => {
+        this.$axios.defaults.headers.common.Authorization = `Bearer ${result.data.access_token}`;
         this.$router.push('/');
       }).catch(() => {
         this.$q.notify({

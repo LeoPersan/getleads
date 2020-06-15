@@ -33,17 +33,13 @@ export default {
   name: 'Portfolio',
   data() {
     return {
-      portifolios: [
-        {
-          id: 1,
-          name: 'Teste',
-        },
-        {
-          id: 2,
-          name: 'Teste',
-        },
-      ],
+      portifolios: [],
     };
+  },
+  mounted() {
+    this.$axios.get('/portfolios').then((result) => {
+      this.portifolios = result.data;
+    });
   },
 };
 </script>

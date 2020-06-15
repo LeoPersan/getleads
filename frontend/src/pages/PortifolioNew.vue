@@ -72,17 +72,21 @@ export default {
       const {
         name, accept, file,
       } = this;
-      this.$axios.post('/portifolios', {
-        name,
-        accept,
-        file,
-      }).then(() => {
+      const formData = new FormData();
+      formData.append('file', file);
+      formData.append('name', name);
+      formData.append('accept', accept);
+      this.$axios.post('/portfolios', formData).then(() => {
         this.$q.notify({
           color: 'green-4',
           textColor: 'white',
           icon: 'cloud_done',
           message: 'Avisaremos por e-mail assim que os dados forem computados',
         });
+        setTimeout(() => {
+          this.onReset();
+          this.$router.push('/portifolios');
+        }, 2000);
       }).catch(() => {
         this.$q.notify({
           type: 'negative',
